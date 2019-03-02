@@ -13,21 +13,25 @@ console.log(title);
 
 const desc = <p>This is Description</p>;
 
-<<<<<<< HEAD
 // React Elements 문법
-=======
->>>>>>> a17a6afecc04a1d4fa826f15fef5a2af71c2a6c6
+/*
 const header = React.createElement(
     'header',
     null,
     title, desc
 );
+*/
 
-<<<<<<< HEAD
+// JSX 문법 - ()로 감쌀 수도 있다. 2줄이 넘어가는 경우 가독성을 위해 감싸는 것을 권장한다.
+const header = (
+    <header>
+        <h1>My First React Element</h1>
+        <p>This is Description</p>
+    </header>
+);
+
 console.log(header);
 
-=======
->>>>>>> a17a6afecc04a1d4fa826f15fef5a2af71c2a6c6
 ReactDOM.render(header, document.getElementById('root'));
 
 /**

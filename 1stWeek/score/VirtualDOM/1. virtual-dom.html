@@ -1,0 +1,71 @@
+<!-- REACT 개념 -->
+
+<!--
+* Virtual DOM의 등장 배경
+
+기존 DOM API는 느리다.
+DOM Manipulation이 느린게 아니라 DOM 렌더링에 필요한 연산이 느리다.
+
+* DOM API의 연산 흐름
+HTML 파싱 DOM + CSS 스타일 DOM = DOM Tree 구성.
+변경이 일어나면 reflow, repaint를 수행한다.
+
+React : DOM Manipulation에 필요한 rendering을 최소화하는 것이 목표.
+DOM을 JS객체로 만들고 객체에 변경 사항이 있는지를 diff(비교)한다.
+변경 사항이 있다면 객체를 업데이트한 후 DOM을 그려서 렌더링에 필요한 연산을 최소화한다.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual DOM</title>
+</head>
+<body>
+
+<!-- Target Container -->
+<div id="react-container"></div>
+<!-- React Library & React DOM -->
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script>
+    "use strict";
+    const dish = React.createElement("h1", null, "Baked Salmon");
+    // React DOM이 자바스크립트 객체를 뷰로 변환하여 원하는 DOM에 삽입한다.
+    ReactDOM.render(
+        dish,
+        document.getElementById('react-container')
+    );
+    console.log('dish', dish);
+</script>
+
+<!--
+DOM을 직접 조작하는 것은 1000개의 태그가 있다면 1000번의 렌더링과 연산이 필요하다.
+반면 virtual DOM은 직접 DOM API를 사용하지 않고
+diff하여 변경된 부분만 메모리의 객체를 업데이트하므로 훨씬 빠르다.
+-->
+<hr>
+<div id="real-DOM">
+    <ul class="list">
+        <li> item 1 </li>
+        <li> item 2 </li>
+    </ul>
+</div>
+<div id="virtual-DOM">
+</div>
+<script>
+    // 이해를 돕기 위한 virtual DOM 객체.
+    // 실제 렌더링은 되지 않는다.
+    const vdom = {
+        type : 'ul',
+        props : { 'class' : 'list'},
+        children : [
+            { type : 'li', props : {}, children : 'item 1' },
+            { type : 'li', props : {}, children : 'item 2' },
+        ]
+    };
+    ReactDOM.render(vdom, document.getElementById('virtual-DOM'));
+</script>
+</body>
+</html>
+

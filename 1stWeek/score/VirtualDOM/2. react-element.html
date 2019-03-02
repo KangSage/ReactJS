@@ -1,0 +1,140 @@
+<!--
+* React DOM 구성 요소
+
+React DOM은 React Element와 React Component 두가지로 구성된다.
+
+1) React Element
+ReactElement는 DOM처럼 보이지만 JS객체에 가깝다.
+creatElement의 구성 요소는
+첫번째 파라미터 : type
+두번째 파라미터 : 속성
+세번째 파라미터 : child Element
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Elements</title>
+</head>
+<body>
+
+<!-- 속성이 없는 경우 -->
+<div id="container-1">
+    <h1>Baked Salmon</h1>
+</div>
+<div id="react-container-1">
+</div>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script>
+    const dish1 = React.createElement('h1', null, "Baked Salmon");
+    ReactDOM.render(dish1, document.getElementById('react-container-1'));
+</script>
+
+<!-- 속성이 있는 경우 -->
+<hr>
+<div id="container-2">
+    <h1 id="recipe-0" data-type="title">Baked Salmon</h1>
+</div>
+<div id="react-container-2">
+</div>
+<script>
+    const dish2 = React.createElement(
+        'h1',
+        {id : 'react-recipe-0', 'data-type': 'title', },
+        'Baked Salmon'
+    );
+    ReactDOM.render(
+        dish2,
+        document.getElementById('react-container-2')
+    );
+</script>
+
+<!-- 자식이 있는 경우 -->
+<hr>
+<div id="container-3">
+    <section id="baked-salmon">
+        <h1>Baked Salmon</h1>
+        <ul class="ingredients">
+            <li>1 lb Salmon</li>
+            <li>1 cup Pine Nuts</li>
+            <li>2 cups Butter Lettuce</li>
+            <li>1 Yellow Squash</li>
+            <li>1/2 cup Olive Oil</li>
+            <li>3 cloves of Garlic</li>
+        </ul>
+        <section class="instructions">
+            <h2>Cooking Instructions</h2>
+            <p>Preheat the oven to 350 degrees.</p>
+            <p>Spread the olive oil around a glass baking dish.</p>
+            <p>Add the salmon, garlic, and pine nuts to the dish.</p>
+            <p>Bake for 15 minutes.</p>
+            <p>Add the yellow squash and put back in the oven for 30 mins.</p>
+            <p>Remove from oven and let cool for 15 minutes.
+                Add the lettuce and serve.</p>
+        </section>
+    </section>
+</div>
+<div id="react-container-3"></div>
+<script>
+    const dish3 = React.createElement('section', {id : 'react-baked-salmon'},
+        React.createElement('h1', null, 'Baked Salmon'),
+        React.createElement('ul', {'className' : "ingredients"},
+            React.createElement('li', null, '1 lb Salmon'),
+            React.createElement('li', null, '1 cup Pine Nuts'),
+            React.createElement('li', null, '2 cups Butter Lettuce'),
+            React.createElement('li', null, '1 Yellow Squash'),
+            React.createElement('li', null, '1/2 cup Olive Oil'),
+            React.createElement('li', null, '3 cloves of Garlic')
+        ),
+        React.createElement('section', { className : 'instructions' },
+            React.createElement('h2', null, 'Cooking Instructions'),
+            React.createElement('p', null, 'Preheat the oven to 350 degrees.'),
+            React.createElement('p', null, 'Spread the olive oil around a glass baking dish.'),
+            React.createElement('p', null, 'Add the salmon, garlic, and pine nuts to the dish.'),
+            React.createElement('p', null, 'Bake for 15 minutes.'),
+            React.createElement('p', null, 'Add the yellow squash and put back in the oven for 30 mins.'),
+            React.createElement('p', null, 'Remove from oven and let cool for 15 minutes.\n' +
+                '                Add the lettuce and serve.'),
+        )
+    );
+    ReactDOM.render(dish3, document.getElementById('react-container-3'));
+</script>
+
+<!-- 자바스크립트 Array로 축약 -->
+<div id="react-container-array"></div>
+<script>
+    const items = [
+        '1 lb Salmon',
+        '1 cup Pine Nuts',
+        '2 cups Butter Lettuce',
+        '1 Yellow Squash',
+        '1/2 cup Olive Oil',
+        '3 cloves of Garlic'
+    ];
+    const ingredients = React.createElement(
+        'ul',
+        { className : 'ingredients' },
+        items.map((ingredient, i) =>
+            // key가 없으면 에러
+            React.createElement('li', { key: i }, ingredient)
+        )
+    );
+    ReactDOM.render(
+        ingredients,
+        document.getElementById('react-container-array')
+    );
+</script>
+
+<!--
+2) React Component
+요리법이 많아질 경우 모두 DOM으로 만들면 코드가 너무 길어진다.
+재사용이 가능한 부분을 클래스로 만들고 인스턴스를 생성한다.
+여기서는 요리 제목, 요리 재료, 요리 방법의 3가지 속성 값을 가지는 요리법이란 클래스를 만들고
+이 클래스로 인스턴스인 피자요리법, 햄버거 요리법 등 많은 요리법 인스턴스를 만들어 낼 수 있다.
+-->
+
+</body>
+</html>
+
