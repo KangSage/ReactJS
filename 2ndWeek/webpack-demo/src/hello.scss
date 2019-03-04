@@ -1,0 +1,13 @@
+// css 확장 문법 sass
+// .scss 파일은 sass 문법과 css 문법을 혼용가능.
+
+body {
+  background: #bbbbbb;
+
+  // css와 달리 자식을 가질 수 있다.
+  div {
+    margin: 2rem;
+    padding: 1rem;
+    border: 1px solid red;
+  }
+}
