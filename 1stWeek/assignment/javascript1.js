@@ -61,12 +61,12 @@ console.log('삭제되었습니다 : %o', books);
 
 // 9. books 배열에서 제목이 자바의 정석인 첫번째 객체를 찾아서 출력하시오
 console.log('9 -------------------------------------------------------------------');
-var tempBook = books.find(v => {return v.title === '자바의 정석'});
+var tempBook = books.find(v => v.title === '자바의 정석');
 console.log('자바의 정석 나와라 : %o', tempBook);
 
 // 10. 제목이 모두의 파이썬인 객체의 배열 인덱스를 찾으시오
 console.log('10 -------------------------------------------------------------------');
-let index = books.findIndex(v => {return v.title === '모두의 파이썬'});
+let index = books.findIndex(v => v.title === '모두의 파이썬');
 
 console.log("모두의 파이썬의 인덱스 : %d", index);
 
@@ -84,8 +84,10 @@ console.log('sum:' + sum);
 // 12. 가격이 3만원이상인것을 모아서 별도의 배열을 만드시오
 console.log('12 -------------------------------------------------------------------');
 var newFilter = books.filter(v => {return v.price >= 30000 });
+console.log('3만원 이상인 책들1 : %o', newFilter);
 
-console.log('3만원 이상인 책들 : %o', newFilter);
+var newFilter2 = books.filter(v =>  v.price >= 30000 );
+console.log('3만원 이상인 책들2 : %o', newFilter2);
 
 // 13. 제목을 가나다 순서로 소팅한후 제목앞에 소팅된 번호를 붙인 새로운 배열을 생성하시오// 원본 배열은 훼손되면 안됩니다.
 console.log('13 -------------------------------------------------------------------');

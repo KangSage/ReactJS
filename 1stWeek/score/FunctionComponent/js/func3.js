@@ -1,6 +1,6 @@
-// prerequisite 전제 조건 IV
+// prerequisite 전제 조건 III
 
-// * 함수 호출과 생성자 함수
+// * 함수 호출
 
 function person() {
     // global this
